@@ -1,0 +1,43 @@
+# Large Data Files & Datasets
+*.csv
+*.tsv
+*.parquet
+*.feather
+*.h5
+*.hdf5
+*.pkl
+*.pickle
+*.json
+*.sqlite
+*.db
+
+# Large Model Binaries & Weights
+*.bin
+*.onnx
+*.safetensors
+*.pt
+*.pth
+
+# Virtual Environment
+venv/
+ENV/
+env/
+
+# Environment Variables & Secrets (API Tokens)
+.env
+*.env
+
+# Python Cache & Bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+
+# VS Code Configuration
+.vscode/
+
+# Jupyter Notebook Checkpoints
+.ipynb_checkpoints/
+
+# System / OS Files
+.DS_Store
+Thumbs.db
