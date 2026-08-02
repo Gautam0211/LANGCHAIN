@@ -1,6 +1,8 @@
 import os
 from dotenv import load_dotenv
 from langchain_huggingface import HuggingFaceEndpoint, ChatHuggingFace
+from langchain_core.output_parsers import StrOutputParser
+from langchain_core.prompts import PromptTemplate
 
 # 1. Load environment variables from .env
 load_dotenv()
@@ -12,10 +14,23 @@ repo_id = "Qwen/Qwen2.5-7B-Instruct"
 llm = HuggingFaceEndpoint(
     repo_id=repo_id,
     task='text-generation',
-    max_new_tokens=10,
+    max_new_tokens=100,
     temperature=0.1)
 
 model=ChatHuggingFace(llm=llm)
 
-result = model.invoke(" Capital of India")
-print(result.content)
+
+parser = StrOutputParser()
+
+
+prompt = PromptTemplate(
+    template='Generate 5 interesting facts about {topic}',
+    input_variables=['topic']
+)
+
+chain = prompt | model | parser
+
+result = chain.invoke({'topic':'cricket'})
+print(result)
+
+chain.get_graph().print_ascii()
